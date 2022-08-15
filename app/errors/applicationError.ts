@@ -8,9 +8,9 @@ export interface ApplicationError {
 
 export class NotFoundError implements ApplicationError {
   constructor(
+    public data: object = {},
     public httpStatusCode: statusError = statusError.NotFound,
     public code: codeError = codeError.NotFound,
-    public data: object = {},
   ) {
     this.httpStatusCode = httpStatusCode;
     this.code           = code;
@@ -20,9 +20,9 @@ export class NotFoundError implements ApplicationError {
 
 export class UnauthorizedError implements ApplicationError {
   constructor(
+    public data: object = {},
     public httpStatusCode: statusError = statusError.Unauthorized,
     public code: codeError = codeError.Unauthorized,
-    public data: object = {},
   ) {
     this.httpStatusCode = httpStatusCode;
     this.code           = code;
@@ -32,9 +32,9 @@ export class UnauthorizedError implements ApplicationError {
 
 export class InternalServerError implements ApplicationError {
   constructor(
+    public data: object = {},
     public httpStatusCode: statusError = statusError.InternalServerError,
     public code: codeError = codeError.InternalServerError,
-    public data: object = {},
   ) {
     this.httpStatusCode = httpStatusCode;
     this.code           = code;
@@ -44,12 +44,12 @@ export class InternalServerError implements ApplicationError {
 
 export class BadRequestError implements ApplicationError {
   constructor(
+    public data: object[],
     public httpStatusCode: statusError = statusError.BadRequest,
-    public code: codeError = codeError.BadRequest,
-    public data: object = {},
+    public code: codeError = codeError.BadRequest
   ) {
-    this.httpStatusCode = httpStatusCode;
-    this.code           = code;
     this.data           = data;
+    this.httpStatusCode = statusError.BadRequest;
+    this.code           = codeError.BadRequest;
   }
 }

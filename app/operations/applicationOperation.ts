@@ -7,7 +7,7 @@ interface StepFunction {
   stepAuthorization(): ApplicationError | boolean;
 }
 
-export class ApplicationOperation implements StepFunction{
+export class ApplicationOperation implements StepFunction {
   request: Request;
   error: ApplicationError;
 

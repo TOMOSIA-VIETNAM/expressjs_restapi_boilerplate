@@ -1,12 +1,7 @@
-import {
-  IsInt,
-  Length,
-  Min,
-  Max,
-  validate
-} from 'class-validator';
+import { IsInt, Length, Min, Max } from 'class-validator';
+import ApplicationForm from '../applicationForm';
 
-export class IndexForm {
+export class IndexForm extends ApplicationForm {
   @Length(10, 20)
   first_name: string;
 
@@ -17,14 +12,4 @@ export class IndexForm {
   @Min(1)
   @Max(100)
   limit: number;
-
-  valid(): void {
-    validate(this).then(errors => {
-      if (errors.length > 0) {
-        console.log('validation failed. errors: ', errors);
-      } else {
-        console.log('validation succeed');
-      }
-    });
-  }
 }
