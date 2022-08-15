@@ -8,11 +8,15 @@ import morgan from "morgan";
 import fs from 'fs';
 import path from 'path';
 import routes from './routes';
+import helmet from 'helmet';
+import cors from 'cors';
 import '../lib/expressRes';
 
 // create express app
 const app: Application = express();
 
+app.use(helmet());
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
