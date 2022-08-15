@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import indexOperation from '../operations/users/indexOperation';
+import IndexOperation from '../operations/users/indexOperation';
 
 export const index = async (request: Request, response: Response) => {
-  const operation = new indexOperation(request);
+  const operation = new IndexOperation(request);
   await operation.call();
   
   if ( operation.error == null ) {
