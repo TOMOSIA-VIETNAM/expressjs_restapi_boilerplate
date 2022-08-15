@@ -1,17 +1,17 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 import { Database } from "../config/database/database";
-import * as express from "express";
+import express, { Application } from "express";
 import { Request, Response } from "express";
-import * as bodyParser from "body-parser";
-import * as morgan from 'morgan';
-import * as fs from 'fs';
-import * as path from 'path';
+import bodyParser from "body-parser";
+import morgan from "morgan";
+import fs from 'fs';
+import path from 'path';
 import routes from './routes';
 import '../lib/expressRes';
 
 // create express app
-const app = express();
+const app: Application = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
