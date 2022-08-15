@@ -4,5 +4,5 @@ src/**/*.js.map
 
 .env
 #Log
-# log/*
-# !log
+log/*
+!log
