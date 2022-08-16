@@ -1,0 +1,41 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgresdb:/var/lib/postgresql/data
+      - ./docker/database-init.sh:/docker-entrypoint-initdb.d/database-init.sh
+  node:
+    image: node:16.15.0-alpine
+    container_name: node-server
+    working_dir: /app
+    command: sh -c "cp -u .env.sample .env && npm i && npm run dev"
+    tty: true
+    stdin_open: true
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app
+      - ./node_modules:/app/node_modules
+    depends_on:
+      - postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    ports:
+      - 5050:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: postgres@admin.com
+      PGADMIN_DEFAULT_PASSWORD: postgres
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+volumes:
+  postgresdb:
+  pgadmin-data:

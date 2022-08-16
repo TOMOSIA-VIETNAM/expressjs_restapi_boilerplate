@@ -11,3 +11,32 @@
 
 1. install `typeorm` globally: `npm i -g typeorm`
 2. run `typeorm -h` to show list of available commands
+
+## Use docker for development
+
+* Build all services
+
+```
+$ docker-compose up -d
+```
+
+* Running migrations
+
+```
+$ docker-compose run node sh -c "npm run migration:run"
+```
+
+* Running seeder
+
+```
+$ docker-compose run node sh -c "npm run seed:run"
+```
+
+* Access to pgAdmin
+
+```
+http://localhost:5050/
+
+user: postgres@admin.com
+password: postgres
+```
